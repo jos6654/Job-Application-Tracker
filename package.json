@@ -1,0 +1,24 @@
+{
+  "name": "Job-Application-Tracker",
+  "version": "1.0.0",
+  "description": "Job Tracker Squad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jos6654/Job-Application-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jos6654/Job-Application-Tracker/issues"
+  },
+  "homepage": "https://github.com/jos6654/Job-Application-Tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
