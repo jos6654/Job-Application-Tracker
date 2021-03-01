@@ -50,4 +50,12 @@ function App() {
   );
 }
 
+// takes in the card that the user is editing, and will diplay the card
+// with editable fields. After the user presses "save", this function will
+// update the card object and return it.
+function UpdateInfo(card) {
+    
+    return card;
+}
+
 export default App;
