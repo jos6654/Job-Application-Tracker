@@ -1,0 +1,37 @@
+.popup {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(80,80,80);
+    background-color: rgba(80,80,80,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+
+.popup-body {
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    filter: opacity(100%);
+    flex: 1 0 auto;
+    margin: auto;
+}
+
+.filler {
+    display: flex;
+}
+
+.filler-horizontal {
+    flex-direction: row;
+}
+
+.filler-vertical {
+    flex-direction: column;
+}
+
+.filler-buffer {
+    margin: auto;
+    flex: 1 0 auto;
+}
