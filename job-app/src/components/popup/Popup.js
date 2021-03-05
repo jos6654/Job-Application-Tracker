@@ -24,7 +24,7 @@ class Popup extends React.Component {
         };
 
         const assignedCategories = gcn("categories").split(",").map((cat) => {
-            const ret = cat.trim();
+            var ret = cat.trim();
             if (ret[0] !== '#') {
                 ret = "#" + ret;
             }

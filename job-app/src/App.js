@@ -29,6 +29,7 @@ class App extends React.Component {
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
+        this.removeCard = this.removeCard.bind(this);
     }
 
     cards() {
@@ -41,6 +42,7 @@ class App extends React.Component {
                 <div key={appl.ApplicationID}>
                     <Card>
                         <Card.Body>
+                            <div className="delete-div"><Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} </div>
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
@@ -66,6 +68,18 @@ class App extends React.Component {
         });
     }
 
+    removeCard(appId) {
+        var currApplications = this.state.applications;
+        var index = currApplications.findIndex(app => app.ApplicationID === appId);
+        if (index > -1) {
+            currApplications.splice(index, 1);
+        }
+        
+        this.setState({
+            applications: currApplications,
+        });
+    }
+
     componentDidMount() {
         console.log("App.js mounted");
         // API call to get 
@@ -87,7 +101,7 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
                             <h2>Tags</h2>
                             <div>
                                 <p>#preferred</p> {/* placeholder */}
