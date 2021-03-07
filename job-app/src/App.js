@@ -47,7 +47,7 @@ class App extends React.Component {
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
-                            <Button variant="primary" className="btn-primary" 
+                            <Button variant="primary" 
                                 onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}>Update</Button> {' '}
                         </Card.Body>
                     </Card>
@@ -103,7 +103,7 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             <h2>Tags</h2>
                             <div>
                                 <p>#preferred</p> {/* placeholder */}
