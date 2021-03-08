@@ -13,6 +13,7 @@ class Popup extends React.Component {
             addCard: props.addCard,
             cancel: props.cancel,
             interviewDate: new Date(),
+            appliedDate: new Date(),
             updateCard: props.updateCard,
             cardToUpdate: props.cardToUpdate
         }
@@ -90,14 +91,15 @@ class Popup extends React.Component {
                             <div className="filler-buffer"></div>
                             <div className="popup-body">
                                 <div className="popup-description">Update an application.</div>
-                                <input className="company-name" type="text" defaultValue={this.state.cardToUpdate.CompanyName}></input>
-                                <input className="position" type="text" defaultValue={this.state.cardToUpdate.Position}></input>
-                                <input className="salary" type="text" defaultValue={this.state.cardToUpdate.Salary}></input>
-                                <input className="company-phone" type="text" defaultValue={this.state.cardToUpdate.CompanyPhone}></input>
-                                <input className="company-address" type="text" defaultValue={this.state.cardToUpdate.CompanyAddress}></input>
-                                <input className="categories" type="text" defaultValue={this.state.cardToUpdate.Categories}></input>
-                                <input className="description" type="text" defaultValue={this.state.cardToUpdate.Description}></input>
-                                <DatePicker selected={Date.parse(this.state.cardToUpdate.AppliedDate)} onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                                <input className="company-name" type="text" defaultValue={this.state.cardToUpdate.CompanyName} placeholder="Company Name"></input>
+                                <input className="position" type="text" defaultValue={this.state.cardToUpdate.Position} placeholder="Position"></input>
+                                <input className="salary" type="text" defaultValue={this.state.cardToUpdate.Salary} placeholder="Salary"></input>
+                                <input className="company-phone" type="text" defaultValue={this.state.cardToUpdate.CompanyPhone} placeholder="Company Phone"></input>
+                                <input className="company-address" type="text" defaultValue={this.state.cardToUpdate.CompanyAddress} placeholder="Company Address"></input>
+                                <input className="categories" type="text" defaultValue={this.state.cardToUpdate.Categories} placeholder="Categories"></input>
+                                <input className="description" type="text" defaultValue={this.state.cardToUpdate.Description} placeholder="Description"></input>
+                                <DatePicker selected={Date.parse(this.state.cardToUpdate.AppliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
+                                <DatePicker selected={Date.parse(this.state.cardToUpdate.InterviewDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
                                 <button onClick={this.updateMyCard}>Update my Application</button>
                                 <button onClick={this.cancel}>Cancel</button>
                             </div>
@@ -124,7 +126,14 @@ class Popup extends React.Component {
                             <input className="company-address" type="text" placeholder="Company Address"></input>
                             <input className="categories" type="text" placeholder="Categories"></input>
                             <input className="description" type="text" placeholder="Description"></input>
-                            <DatePicker selected={this.state.interviewDate} onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                            <div>
+                                Application Date
+                                <DatePicker selected={Date.parse(this.state.appliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
+                            </div>
+                            <div>
+                                Interview Date
+                                <DatePicker selected={Date.parse(this.state.interviewDate)} onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                            </div>
                             <button onClick={this.addMyCard}>Add my Application</button>
                             <button onClick={this.cancel}>Cancel</button>
                         </div>
