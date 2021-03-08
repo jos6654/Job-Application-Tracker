@@ -25,11 +25,15 @@ class App extends React.Component {
         super();
         this.state = {
             applications: [],
-            popupOpen: false
+            popupOpenAdd: false,
+            popupOpenUpdate: false,
+            cardToUpdate: null
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
         this.save = this.save.bind(this);
+        this.removeCard = this.removeCard.bind(this);
+        this.updateCard = this.updateCard.bind(this);
     }
 
     cards() {
@@ -42,9 +46,12 @@ class App extends React.Component {
                 <div key={appl.ApplicationID}>
                     <Card>
                         <Card.Body>
+                            <div className="delete-div"><Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} </div>
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
+                            <Button variant="primary" 
+                                onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}>Update</Button> {' '}
                         </Card.Body>
                     </Card>
                 </div>
@@ -57,13 +64,36 @@ class App extends React.Component {
         this.state.applications.push(card);
         this.setState({ 
             appCount: this.state.applications.length,
-            popupOpen: false
+            popupOpenAdd: false
         });
     }
 
     cancel() {
         this.setState({
-            popupOpen: false
+            popupOpenAdd: false,
+            popupOpenUpdate: false,
+            cardToUpdate: null
+        });
+    }
+
+    updateCard(card) {
+        var index = this.state.applications.findIndex(app => app.ApplicationID === card.ApplicationID);
+        this.state.applications[index] = card;
+        this.setState({ 
+            popupOpenUpdate: false,
+            cardToUpdate: null
+        });
+    }
+
+    removeCard(appId) {
+        var currApplications = this.state.applications;
+        var index = currApplications.findIndex(app => app.ApplicationID === appId);
+        if (index > -1) {
+            currApplications.splice(index, 1);
+        }
+        
+        this.setState({
+            applications: currApplications,
         });
     }
 
@@ -89,7 +119,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("popupOpen? " + this.state.popupOpen.toString());
+        console.log("popupOpenAdd? " + this.state.popupOpenAdd.toString());
         return (
             <React.Fragment>
                 <div className="App">
@@ -114,7 +144,8 @@ class App extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpen && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
+                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate}></Popup>}
             </React.Fragment>
         );
     }
