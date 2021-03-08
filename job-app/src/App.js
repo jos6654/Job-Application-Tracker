@@ -31,6 +31,7 @@ class App extends React.Component {
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
+        this.removeCard = this.removeCard.bind(this);
         this.updateCard = this.updateCard.bind(this);
     }
 
@@ -44,6 +45,7 @@ class App extends React.Component {
                 <div key={appl.ApplicationID}>
                     <Card>
                         <Card.Body>
+                            <div className="delete-div"><Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} </div>
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
@@ -79,6 +81,18 @@ class App extends React.Component {
         this.setState({ 
             popupOpenUpdate: false,
             cardToUpdate: null
+        });
+    }
+
+    removeCard(appId) {
+        var currApplications = this.state.applications;
+        var index = currApplications.findIndex(app => app.ApplicationID === appId);
+        if (index > -1) {
+            currApplications.splice(index, 1);
+        }
+        
+        this.setState({
+            applications: currApplications,
         });
     }
 

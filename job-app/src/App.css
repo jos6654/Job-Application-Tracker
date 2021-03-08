@@ -19,13 +19,11 @@
 
 .main {
   align-items: left;
-  /* background-color: tan; */
   min-height: 100vh;
   min-width: 90vw;
 }
 
 .untagged {
-  /* background-color: lightblue; */
   width: 10vw;
   align-items: center;
 }
@@ -51,3 +49,6 @@
   color: #61dafb;
 }
 
+.delete-div {
+  float: right;
+}
