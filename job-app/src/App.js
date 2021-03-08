@@ -25,11 +25,14 @@ class App extends React.Component {
         super();
         this.state = {
             applications: [],
-            popupOpen: false
+            popupOpenAdd: false,
+            popupOpenUpdate: false,
+            cardToUpdate: null
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
         this.removeCard = this.removeCard.bind(this);
+        this.updateCard = this.updateCard.bind(this);
     }
 
     cards() {
@@ -46,6 +49,8 @@ class App extends React.Component {
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
+                            <Button variant="primary" 
+                                onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}>Update</Button> {' '}
                         </Card.Body>
                     </Card>
                 </div>
@@ -58,13 +63,24 @@ class App extends React.Component {
         this.state.applications.push(card);
         this.setState({ 
             appCount: this.state.applications.length,
-            popupOpen: false
+            popupOpenAdd: false
         });
     }
 
     cancel() {
         this.setState({
-            popupOpen: false
+            popupOpenAdd: false,
+            popupOpenUpdate: false,
+            cardToUpdate: null
+        });
+    }
+
+    updateCard(card) {
+        var index = this.state.applications.findIndex(app => app.ApplicationID === card.ApplicationID);
+        this.state.applications[index] = card;
+        this.setState({ 
+            popupOpenUpdate: false,
+            cardToUpdate: null
         });
     }
 
@@ -86,7 +102,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("popupOpen? " + this.state.popupOpen.toString());
+        console.log("popupOpenAdd? " + this.state.popupOpenAdd.toString());
         return (
             <React.Fragment>
                 <div className="App">
@@ -101,7 +117,7 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             <h2>Tags</h2>
                             <div>
                                 <p>#preferred</p> {/* placeholder */}
@@ -110,7 +126,8 @@ class App extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpen && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
+                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate}></Popup>}
             </React.Fragment>
         );
     }
