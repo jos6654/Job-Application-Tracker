@@ -2,6 +2,7 @@
 import './App.css';
 import React from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
+import { PencilSquare } from 'react-bootstrap-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -46,12 +47,15 @@ class App extends React.Component {
                 <div key={appl.ApplicationID}>
                     <Card>
                         <Card.Body>
-                            <div className="delete-div"><Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} </div>
+                            <div className="delete-div">
+                                <Button variant="outline-secondary" size='sm'
+                                    onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
+                                <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
+                            </div>
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
                             <div>{appl.Description}</div>
-                            <Button variant="primary" 
-                                onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}>Update</Button> {' '}
+                            
                         </Card.Body>
                     </Card>
                 </div>
