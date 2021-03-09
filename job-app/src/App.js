@@ -138,7 +138,7 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Tags</h2>
                             <div>
@@ -148,8 +148,9 @@ class App extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
-                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={new Date()}></Popup>}
+                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate} 
+                    appliedDate={this.state.cardToUpdate.AppliedDate} interviewDate={this.state.cardToUpdate.InterviewDate}></Popup>}
             </React.Fragment>
         );
     }
