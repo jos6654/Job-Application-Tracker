@@ -32,6 +32,7 @@ class App extends React.Component {
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
+        this.save = this.save.bind(this);
         this.removeCard = this.removeCard.bind(this);
         this.updateCard = this.updateCard.bind(this);
     }
@@ -100,9 +101,25 @@ class App extends React.Component {
         });
     }
 
+    save() {
+        const axios = require('axios');
+        const res = axios.post('/save', JSON.stringify(this.state.applications), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     componentDidMount() {
         console.log("App.js mounted");
         // API call to get 
+        const axios = require('axios');
+        axios.get('/applications').then((response) => {
+            console.log(response);
+            this.setState({
+                applications: response.data
+            });
+        });
     }
 
     render() {
@@ -121,7 +138,8 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
+                            {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Tags</h2>
                             <div>
                                 <p>#preferred</p> {/* placeholder */}
