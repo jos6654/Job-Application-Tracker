@@ -6,9 +6,7 @@
         "CompanyName": "Tik Tok",
         "CompanyPhone": "(123) 456-7890",
         "CompanyAddress": "Rochester, NY 66666",
-        "Categories": [
-            "#Rochester"
-        ],
+        "Categories": ["#Rochester"],
         "AppliedDate": "2/14/2021",
         "Description": "This is a big notes section. \n This is the next line of notes."
     },
@@ -19,9 +17,7 @@
         "CompanyName": "Internet",
         "CompanyPhone": "(321) 654-0987",
         "CompanyAddress": "California, CA 12345",
-        "Categories": [
-            "#Priority"
-        ],
+        "Categories": ["#Priority"],
         "AppliedDate": "2/19/2021",
         "Description": "Coding for the official internet company."
     }

@@ -4,6 +4,8 @@ const app = express();
 // Node File Stream object
 const fs = require('fs');
 
+app.use(express.json());
+
 async function ReadJson(jsonID) {
     const data = await fs.promises.readFile('./server/storage/' + jsonID, 'utf8');
     jsonData = JSON.parse(data);
@@ -17,16 +19,17 @@ app.get("/applications", (req, res) => {
 });
 
 app.post('/save', (req, res) => {
-    const body = req.query;
-    WriteJson(body);
+    const body = req.body;
+    //WriteJson(body);
+    console.log("Received Json data:");
     console.log(body);
-    res.set('Content-Type', 'text/plain');
+    WriteJson(body);
     res.send('Received Json Data.')
 });
 
 function WriteJson(jsonData) {
     var jsonID = 'exampleJson.json';
-    jsonString = JSON.stringify(jsonData);
+    jsonString = JSON.stringify(jsonData, null, 4);
     fs.writeFile('./server/storage/' + jsonID, jsonString, err => {
         if (err) {
             console.log('Error writing applications to file: ' + err);
