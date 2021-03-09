@@ -138,7 +138,7 @@ class App extends React.Component {
                             </div>
                         </Container>
                         <div className="options">
-                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpen: true}); }}>+ New Application</Button> {' '}
+                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Tags</h2>
                             <div>
