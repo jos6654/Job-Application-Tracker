@@ -152,8 +152,9 @@ class App extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel}></Popup>}
-                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={new Date()}></Popup>}
+                {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate} 
+                    appliedDate={this.state.cardToUpdate.AppliedDate} interviewDate={this.state.cardToUpdate.InterviewDate}></Popup>}
             </React.Fragment>
         );
     }
