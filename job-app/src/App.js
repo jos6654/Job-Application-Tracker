@@ -102,6 +102,8 @@ class App extends React.Component {
         
         this.setState({
             applications: currApplications,
+        }, () => {
+            this.save();
         });
     }
 
