@@ -69,6 +69,8 @@ class App extends React.Component {
         this.setState({ 
             appCount: this.state.applications.length,
             popupOpenAdd: false
+        }, () => {
+            this.save();   
         });
     }
 
@@ -86,6 +88,8 @@ class App extends React.Component {
         this.setState({ 
             popupOpenUpdate: false,
             cardToUpdate: null
+        }, () => {
+            this.save();
         });
     }
 
