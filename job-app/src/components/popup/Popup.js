@@ -12,8 +12,8 @@ class Popup extends React.Component {
         this.state = {
             addCard: props.addCard,
             cancel: props.cancel,
-            interviewDate: new Date(),
-            appliedDate: new Date(),
+            interviewDate: props.interviewDate,
+            appliedDate: props.appliedDate,
             updateCard: props.updateCard,
             cardToUpdate: props.cardToUpdate
         }
@@ -43,7 +43,8 @@ class Popup extends React.Component {
             CompanyPhone: gcn("company-phone"),
             CompanyAddress: gcn("company-address"),
             Categories: assignedCategories,
-            AppliedDate: this.state.interviewDate.toISOString(),
+            AppliedDate: this.state.appliedDate.toISOString(),
+            InterviewDate: this.state.interviewDate.toISOString(),
             Description: gcn("description")
         };
 
@@ -75,7 +76,8 @@ class Popup extends React.Component {
             CompanyPhone: gcn("company-phone"),
             CompanyAddress: gcn("company-address"),
             Categories: assignedCategories,
-            AppliedDate: this.state.interviewDate.toISOString(),
+            AppliedDate: new Date(this.state.appliedDate).toISOString(),
+            InterviewDate: new Date(this.state.interviewDate).toISOString(),
             Description: gcn("description")
         };
         this.state.updateCard(card);
@@ -100,11 +102,11 @@ class Popup extends React.Component {
                                 <input className="description" type="text" defaultValue={this.state.cardToUpdate.Description} placeholder="Description"></input>
                                 <div>
                                     Application Date
-                                    <DatePicker selected={Date.parse(this.state.cardToUpdate.AppliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
+                                    <DatePicker selected={Date.parse(this.state.appliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
                                 </div>
                                 <div>
                                     Interview Date
-                                    <DatePicker selected={Date.parse(this.state.cardToUpdate.InterviewDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
+                                    <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                                 </div>
                                 <button onClick={this.updateMyCard}>Update my Application</button>
                                 <button onClick={this.cancel}>Cancel</button>
@@ -138,7 +140,7 @@ class Popup extends React.Component {
                             </div>
                             <div>
                                 Interview Date
-                                <DatePicker selected={Date.parse(this.state.interviewDate)} onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                                <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                             </div>
                             <button onClick={this.addMyCard}>Add my Application</button>
                             <button onClick={this.cancel}>Cancel</button>
