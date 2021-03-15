@@ -54,7 +54,7 @@ class App extends React.Component {
                             </div>
                             <Card.Title>{appl.CompanyName}</Card.Title>
                             <div>{appl.Position}</div>
-                            <div>{appl.Description}</div>
+                            <div>{appl.Categories}</div>
                             
                         </Card.Body>
                     </Card>
