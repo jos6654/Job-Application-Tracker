@@ -9,8 +9,10 @@
         "Categories": [
             "#Rochester"
         ],
-        "AppliedDate": "2/14/2021",
-        "Description": "This is a big notes section. \n This is the next line of notes."
+        "Status": "Interviewing",
+        "AppliedDate": "2021-02-14T05:00:00.000Z",
+        "InterviewDate": "",
+        "Description": "This is a big notes section.  This is the next line of notes."
     },
     {
         "ApplicationID": "GUID2",
@@ -22,7 +24,9 @@
         "Categories": [
             "#Priority"
         ],
-        "AppliedDate": "2/19/2021",
+        "Status": "Accepted",
+        "AppliedDate": "2021-02-19T05:00:00.000Z",
+        "InterviewDate": "",
         "Description": "Coding for the official internet company."
     }
 ]

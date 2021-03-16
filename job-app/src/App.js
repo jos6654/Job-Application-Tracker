@@ -7,18 +7,7 @@ import { PencilSquare } from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Popup from './components/popup/Popup.js';
-
-const easyApp = {
-    "ApplicationID": "GUID1",
-    "Position": "Lead Software Breaker",
-    "Salary": "$99/year",
-    "CompanyName": "Tik Tok",
-    "CompanyPhone": "(123) 456-7890",
-    "CompanyAddress": "Rochester, NY 66666",
-    "Categories": ["#Rochester"],
-    "AppliedDate": "2/14/2021",
-    "Description": "This is a big notes section. \n This is the next line of notes."
-};
+import { options } from './constants.js';
 
 class App extends React.Component {
 
@@ -37,31 +26,46 @@ class App extends React.Component {
         this.updateCard = this.updateCard.bind(this);
     }
 
-    cards() {
+    cards(filter=null) {
         const cards = [];
-        console.log("cards() start")
         this.state.applications.forEach((appl) => {
-            console.log("card:");
-            console.log(appl);
-            cards.push(
-                <div key={appl.ApplicationID}>
-                    <Card>
-                        <Card.Body>
-                            <div className="delete-div">
-                                <Button variant="outline-secondary" size='sm'
-                                    onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
-                                <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
-                            </div>
-                            <Card.Title>{appl.CompanyName}</Card.Title>
-                            <div>{appl.Position}</div>
-                            <div>{appl.Description}</div>
-                            
-                        </Card.Body>
-                    </Card>
+            if (filter === null || appl.Status === filter) {
+                cards.push(
+                    <div key={appl.ApplicationID}>
+                        <Card>
+                            <Card.Body>
+                                <div className="delete-div">
+                                    <Button variant="outline-secondary" size='sm'
+                                        onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
+                                    <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
+                                </div>
+                                <Card.Title>{appl.CompanyName}</Card.Title>
+                                <div>{appl.Position}</div>
+                                <div>{appl.Description}</div>
+                                
+                            </Card.Body>
+                        </Card>
+                    </div>
+                );
+            }
+        });
+        return cards;
+    }
+
+    categories() {
+        const categories = [];
+        console.log(options);
+        options.forEach((option) => {
+            categories.push(
+                <div>
+                    <div className="category-title">{option}</div>
+                    <div className="category-container">
+                        {this.cards(option)}
+                    </div>
                 </div>
             );
         });
-        return cards;
+        return categories;
     }
 
     addCard(card) {
@@ -127,7 +131,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("popupOpenAdd? " + this.state.popupOpenAdd.toString());
         return (
             <React.Fragment>
                 <div className="App">
@@ -136,10 +139,7 @@ class App extends React.Component {
                     </header>
                     <div className="App-body">
                         <Container className="main">
-                            <div className="untagged">
-                                <h3>Untagged</h3>
-                                {this.cards()}
-                            </div>
+                            {this.categories()}
                         </Container>
                         <div className="options">
                             <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
