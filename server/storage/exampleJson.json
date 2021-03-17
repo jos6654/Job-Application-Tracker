@@ -7,9 +7,10 @@
         "CompanyPhone": "(123) 456-7890",
         "CompanyAddress": "Rochester, NY 66666",
         "Categories": [
-            "#Rochester"
+            "#Rochester",
+            "#Goals"
         ],
-        "Status": "Interviewing",
+        "Status": "Applied",
         "AppliedDate": "2021-02-14T05:00:00.000Z",
         "InterviewDate": "",
         "Description": "This is a big notes section.  This is the next line of notes."
@@ -22,9 +23,10 @@
         "CompanyPhone": "(321) 654-0987",
         "CompanyAddress": "California, CA 12345",
         "Categories": [
-            "#Priority"
+            "#California",
+            "#Goals"
         ],
-        "Status": "Accepted",
+        "Status": "Denied",
         "AppliedDate": "2021-02-19T05:00:00.000Z",
         "InterviewDate": "",
         "Description": "Coding for the official internet company."
