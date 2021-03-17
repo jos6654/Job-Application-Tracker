@@ -158,7 +158,9 @@ class App extends React.Component {
             currApplications.splice(index, 1);
         }
         this.setState({
-            applications: currApplications
+            applications: currApplications,
+        }, () => {
+            this.save();
         });
     }
 
