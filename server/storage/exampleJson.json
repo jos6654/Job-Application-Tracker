@@ -1,14 +1,13 @@
 [
     {
-        "ApplicationID": "GUID1",
+        "ApplicationID": "GUID1-012350987",
         "Position": "Lead Software Breaker",
         "Salary": "$99/year",
         "CompanyName": "Tik Tok",
         "CompanyPhone": "(123) 456-7890",
         "CompanyAddress": "Rochester, NY 66666",
         "Categories": [
-            "#Rochester",
-            "#Goals"
+            "#Rochester"
         ],
         "Status": "Applied",
         "AppliedDate": "2021-02-14T05:00:00.000Z",
@@ -16,7 +15,7 @@
         "Description": "This is a big notes section.  This is the next line of notes."
     },
     {
-        "ApplicationID": "GUID2",
+        "ApplicationID": "GUID2-123-409812349-0",
         "Position": "Junior Software",
         "Salary": "$45/hour",
         "CompanyName": "Internet",
@@ -26,7 +25,7 @@
             "#California",
             "#Goals"
         ],
-        "Status": "Denied",
+        "Status": "Offered",
         "AppliedDate": "2021-02-19T05:00:00.000Z",
         "InterviewDate": "",
         "Description": "Coding for the official internet company."

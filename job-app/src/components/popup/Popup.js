@@ -34,11 +34,23 @@ class Popup extends React.Component {
 
         const assignedCategories = gcn("categories").split(",").map((cat) => {
             var ret = cat.trim();
-            if (ret[0] !== '#') {
+            if (ret.length > 0 && ret[0] !== '#') {
                 ret = "#" + ret;
             }
             return ret;
         });
+
+        if (assignedCategories.length === 1 && assignedCategories[0] === "") {
+            assignedCategories.pop();
+            assignedCategories.push("#untagged");
+        }
+
+        var interviewDate;
+        try {
+            interviewDate = new Date(this.state.interviewDate).toISOString();
+        } catch(err) {
+            interviewDate = "";
+        }
 
         const card = {
             ApplicationID: uuidv4(),
@@ -50,7 +62,7 @@ class Popup extends React.Component {
             Categories: assignedCategories,
             Status: gcn("app-status"),
             AppliedDate: new Date(this.state.appliedDate).toISOString(),
-            InterviewDate: new Date(this.state.interviewDate).toISOString(),
+            InterviewDate: interviewDate,
             Description: gcn("description")
         };
 
@@ -70,8 +82,6 @@ class Popup extends React.Component {
         if (card !== null) {
             selected = card.Status;
         }
-        console.log("SELECTED:");
-        console.log(selected);
         const opts = () => {
             return options.map((option) => {
                 if (option === selected) {
@@ -102,11 +112,16 @@ class Popup extends React.Component {
 
         const assignedCategories = gcn("categories").split(",").map((cat) => {
             var ret = cat.trim();
-            if (ret[0] !== '#') {
+            if (ret.length > 0 && ret[0] !== '#') {
                 ret = "#" + ret;
             }
             return ret;
         });
+
+        if (assignedCategories.length === 1 && assignedCategories[0] === "") {
+            assignedCategories.pop();
+            assignedCategories.push("#untagged");
+        }
 
         var interviewDate;
         try {
@@ -171,10 +186,9 @@ class Popup extends React.Component {
                             </Form.Group>
                             
                         </Form>     
-
+                        {this.statusSelector(this.state.cardToUpdate)}
                         <button onClick={this.updateMyCard}>Update my Application</button>
                         <button onClick={this.cancel}>Cancel</button>
-                        
                     </Modal.Body>
                 </Modal>
             );
@@ -213,11 +227,11 @@ class Popup extends React.Component {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Interview Date:</Form.Label>
-                                <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                                <DatePicker showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                             </Form.Group>
                             
                         </Form>     
-
+                        {this.statusSelector()}
                         <button onClick={this.addMyCard}>Add my Application</button>
                         <button onClick={this.cancel}>Cancel</button>
                         

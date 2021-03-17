@@ -70,7 +70,8 @@ class App extends React.Component {
                                     </div>
                                     <Card.Title>{appl.CompanyName}</Card.Title>
                                     <div>{appl.Position}</div>
-                                    <div>{appl.Description}</div>
+                                    <br></br>
+                                    {appl.Categories.length > 0 ? appl.Categories.map(cat => {return <div><b className="single-tag">{cat}</b></div>;}) : ""}
                                 </Card.Body>
                             </Card>
                         </div>
@@ -152,13 +153,11 @@ class App extends React.Component {
         var currApplications = this.state.applications;
         var index = currApplications.findIndex(app => app.ApplicationID === appId);
         if (index > -1) {
-            currApplications[index].Categories.forEach((category) => {
-                this.removeTag(category);
-            });
             currApplications.splice(index, 1);
         }
         this.setState({
             applications: currApplications,
+            allTags: this.findTags()
         }, () => {
             this.save();
         });
@@ -209,7 +208,7 @@ class App extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={new Date()}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={""}></Popup>}
                 {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate} 
                     appliedDate={this.state.cardToUpdate.AppliedDate} interviewDate={this.state.cardToUpdate.InterviewDate}></Popup>}
             </React.Fragment>
