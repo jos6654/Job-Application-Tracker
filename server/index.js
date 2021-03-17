@@ -6,21 +6,17 @@ const fs = require('fs');
 
 
 app.use(express.json());
-
+const schedule = require('node-schedule');
+var job = schedule.scheduleJob('0 12 * * 0', function() {
 // Email schedulder
-ReadJson('exampleJson.json').then((result) => {
-    const schedule = require('node-schedule');
-    var applications = result;
-    for (i=0; i< applications.length; i++) {
-        // Grab the interview date, subtract 1 day and set it to be at noon
-        var date = new Date(applications[i]["InterviewDate"]);
-        date.setDate(date.getDate() - 1);
-        date.setHours(10);
-        date.setMinutes(43);
-        var job = schedule.scheduleJob(date, function(application) {
-            SendEmailReminder(application);
-        }.bind(null, applications[i]));
-    }
+    ReadJson('exampleJson.json').then((result) => {
+        var applications = result;
+        for (i=0; i< applications.length; i++) {
+            if (applications[i]["InterviewDate"]) {
+                SendEmailReminder(applications[i]);
+            }
+        }
+    });
 });
 
 function SendEmailReminder(application) {
