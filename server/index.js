@@ -4,8 +4,55 @@ const app = express();
 // Node File Stream object
 const fs = require('fs');
 
+
 app.use(express.json());
 
+// Email schedulder
+ReadJson('exampleJson.json').then((result) => {
+    const schedule = require('node-schedule');
+    var applications = result;
+    for (i=0; i< applications.length; i++) {
+        // Grab the interview date, subtract 1 day and set it to be at noon
+        var date = new Date(applications[i]["InterviewDate"]);
+        date.setDate(date.getDate() - 1);
+        date.setHours(10);
+        date.setMinutes(43);
+        var job = schedule.scheduleJob(date, function(application) {
+            SendEmailReminder(application);
+        }.bind(null, applications[i]));
+    }
+});
+
+function SendEmailReminder(application) {
+    const UserEmail = "peg3268@rit.edu";
+    const JobTrackerEmail = "swen356jobtracker@gmail.com";
+    const JobTrackerPass = "JobTrackerSquad";
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: JobTrackerEmail,
+            pass: JobTrackerPass
+        }
+    });
+    var mailOptions = {
+        from: JobTrackerEmail,
+        to: UserEmail,
+        subject: "Interview Reminder: " + application["CompanyName"],
+        html: `<h1>Upcoming Interview!</h1><br><p>${application["CompanyName"]} Interview: ${application["InterviewDate"]}</p>`
+    }
+    transporter.sendMail(mailOptions, function(err, info){
+        if (err) {
+            console.log("Error:" + err)
+        } else {
+            console.log('Email Sent: ' + info.response);
+        }
+    });
+}
+
+
+// Reading and the get actions for the API
 async function ReadJson(jsonID) {
     const data = await fs.promises.readFile('./server/storage/' + jsonID, 'utf8');
     jsonData = JSON.parse(data);
@@ -18,6 +65,8 @@ app.get("/applications", (req, res) => {
     });
 });
 
+
+// Posting and the writing actions
 app.post('/save', (req, res) => {
     const body = req.body;
     //WriteJson(body);

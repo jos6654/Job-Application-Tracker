@@ -10,6 +10,7 @@
             "#Rochester"
         ],
         "AppliedDate": "2/14/2021",
+        "InterviewDate": "3/18/2021",
         "Description": "This is a big notes section. \n This is the next line of notes."
     },
     {
@@ -23,6 +24,7 @@
             "#Priority"
         ],
         "AppliedDate": "2/19/2021",
+        "InterviewDate": "3/20/2021",
         "Description": "Coding for the official internet company."
     }
 ]
