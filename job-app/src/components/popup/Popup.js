@@ -227,7 +227,7 @@ class Popup extends React.Component {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Interview Date:</Form.Label>
-                                <DatePicker showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
+                                <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                             </Form.Group>
                             
                         </Form>     
