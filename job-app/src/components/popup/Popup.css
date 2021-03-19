@@ -15,23 +15,25 @@
     height: 500px;
     background-color: white;
     filter: opacity(100%);
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     margin: auto;
 }
 
-.filler {
+.flex-horizontal {
     display: flex;
-}
-
-.filler-horizontal {
     flex-direction: row;
 }
 
-.filler-vertical {
+.flex-vertical {
+    display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
-.filler-buffer {
-    margin: auto;
+.filler-horizontal {
+    flex: 1 0 auto;
+}
+
+.filler-vertical {
     flex: 1 0 auto;
 }

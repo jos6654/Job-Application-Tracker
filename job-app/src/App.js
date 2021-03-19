@@ -7,18 +7,8 @@ import { PencilSquare } from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Popup from './components/popup/Popup.js';
-
-const easyApp = {
-    "ApplicationID": "GUID1",
-    "Position": "Lead Software Breaker",
-    "Salary": "$99/year",
-    "CompanyName": "Tik Tok",
-    "CompanyPhone": "(123) 456-7890",
-    "CompanyAddress": "Rochester, NY 66666",
-    "Categories": ["#Rochester"],
-    "AppliedDate": "2/14/2021",
-    "Description": "This is a big notes section. \n This is the next line of notes."
-};
+import Sidebar from './components/sidebar/Sidebar.js';
+import { options } from './constants.js';
 
 class App extends React.Component {
 
@@ -28,46 +18,99 @@ class App extends React.Component {
             applications: [],
             popupOpenAdd: false,
             popupOpenUpdate: false,
-            cardToUpdate: null
+            cardToUpdate: null,
+            allTags: [],
+            filteredTags: []
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
         this.save = this.save.bind(this);
         this.removeCard = this.removeCard.bind(this);
         this.updateCard = this.updateCard.bind(this);
+        this.findTags = this.findTags.bind(this);
+        this.setFilteredTags = this.setFilteredTags.bind(this);
+        this.removeTag = this.removeTag.bind(this);
     }
 
-    cards() {
-        const cards = [];
-        console.log("cards() start")
+    findTags() {
+        const foundTags = [];
         this.state.applications.forEach((appl) => {
-            console.log("card:");
-            console.log(appl);
-            cards.push(
-                <div key={appl.ApplicationID}>
-                    <Card>
-                        <Card.Body>
-                            <div className="delete-div">
-                                <Button variant="outline-secondary" size='sm'
-                                    onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
-                                <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
-                            </div>
-                            <Card.Title>{appl.CompanyName}</Card.Title>
-                            <div>{appl.Position}</div>
-                            <div>{appl.Description}</div>
-                            
-                        </Card.Body>
-                    </Card>
-                </div>
-            );
+            appl.Categories.forEach((tag) => {
+                if (!(foundTags.includes(tag))) {
+                    foundTags.push(tag);
+                }
+            });
+        });
+        return foundTags;
+    }
+
+    setFilteredTags(filters) {
+        this.setState({
+            filteredTags: filters
+        });
+    }
+
+    cards(filter=null, tags=null) {
+        const cards = [];
+        this.state.applications.forEach((appl) => {
+            if (filter === null || appl.Status === filter) {
+                var intersection = [];
+                if (tags !== null) {
+                    intersection = appl.Categories.filter(tag => tags.includes(tag));
+                }
+                if (tags === null || intersection.length > 0) {
+                    cards.push(
+                        <div key={appl.ApplicationID}>
+                            <Card>
+                                <Card.Body>
+                                    <div className="delete-div">
+                                        <Button variant="outline-secondary" size='sm'
+                                            onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
+                                        <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
+                                    </div>
+                                    <Card.Title>{appl.CompanyName}</Card.Title>
+                                    <div>{appl.Position}</div>
+                                    <br></br>
+                                    {appl.Categories.length > 0 ? appl.Categories.map(cat => {return <div><b className="single-tag">{cat}</b></div>;}) : ""}
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    );
+                }
+            }
         });
         return cards;
     }
 
+    categories() {
+        const categories = [];
+        console.log(options);
+        options.forEach((option) => {
+            categories.push(
+                <div className="full-category" key={option}>
+                    <div className="category-title">{option}</div>
+                    <div className="category-container">
+                        {this.cards(option, this.state.filteredTags)}
+                    </div>
+                </div>
+            );
+        });
+        return categories;
+    }
+
     addCard(card) {
+        const filteredTags = this.state.filteredTags;
+        const allTags = this.state.allTags;
         this.state.applications.push(card);
+        card.Categories.forEach((category) => {
+            if (!(allTags.includes(category))) {
+                allTags.push(category);
+            }
+            if (!(filteredTags.includes(category))) {
+                filteredTags.push(category);
+            }
+        });
         this.setState({ 
-            appCount: this.state.applications.length,
             popupOpenAdd: false
         }, () => {
             this.save();   
@@ -87,10 +130,23 @@ class App extends React.Component {
         this.state.applications[index] = card;
         this.setState({ 
             popupOpenUpdate: false,
-            cardToUpdate: null
+            cardToUpdate: null,
+            allTags: this.findTags()
         }, () => {
             this.save();
         });
+    }
+
+    removeTag(tag) {
+        const callback = t => t === tag;
+        const allTagsIndex = this.state.allTags.findIndex(callback);
+        const filteredTagsIndex = this.state.filteredTags.findIndex(callback);
+        if (allTagsIndex > -1) {
+            this.state.allTags.splice(allTagsIndex, 1);
+        }
+        if (filteredTagsIndex > -1) {
+            this.state.filteredTags.splice(filteredTagsIndex, 1);
+        }
     }
 
     removeCard(appId) {
@@ -99,9 +155,9 @@ class App extends React.Component {
         if (index > -1) {
             currApplications.splice(index, 1);
         }
-        
         this.setState({
             applications: currApplications,
+            allTags: this.findTags()
         }, () => {
             this.save();
         });
@@ -124,12 +180,16 @@ class App extends React.Component {
             console.log(response);
             this.setState({
                 applications: response.data
+            }, () => {
+                this.setState({
+                    allTags: this.findTags(),
+                    filteredTags: this.findTags()
+                });
             });
         });
     }
 
     render() {
-        console.log("popupOpenAdd? " + this.state.popupOpenAdd.toString());
         return (
             <React.Fragment>
                 <div className="App">
@@ -138,23 +198,17 @@ class App extends React.Component {
                     </header>
                     <div className="App-body">
                         <Container className="main">
-                            <div className="untagged">
-                                <h3>Untagged</h3>
-                                {this.cards()}
-                            </div>
+                            {this.categories()}
                         </Container>
                         <div className="options">
                             <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
-                            <h2>Tags</h2>
-                            <div>
-                                <p>#preferred</p> {/* placeholder */}
-                                <p>#backups</p>   {/* placeholder */}
-                            </div>
+                            <h2>Filter Tags</h2>
+                            <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
                         </div>
                     </div>
                 </div>
-                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={new Date()}></Popup>}
+                {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={""}></Popup>}
                 {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate} 
                     appliedDate={this.state.cardToUpdate.AppliedDate} interviewDate={this.state.cardToUpdate.InterviewDate}></Popup>}
             </React.Fragment>
