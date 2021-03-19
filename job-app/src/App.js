@@ -51,7 +51,10 @@ class App extends React.Component {
     }
 
     cards(filter=null, tags=null) {
-        const cards = [];
+        var cards = [];
+        this.state.applications.sort(function(a, b) {
+            return a.Priority - b.Priority;
+        });
         this.state.applications.forEach((appl) => {
             if (filter === null || appl.Status === filter) {
                 var intersection = [];
@@ -60,13 +63,14 @@ class App extends React.Component {
                 }
                 if (tags === null || intersection.length > 0) {
                     cards.push(
-                        <div key={appl.ApplicationID}>
+                        <div key={appl.ApplicationID} className="card-container">
                             <Card>
                                 <Card.Body>
                                     <div className="delete-div">
                                         <Button variant="outline-secondary" size='sm'
                                             onClick={() => { this.setState({popupOpenUpdate: true, cardToUpdate: appl}); }}><PencilSquare/></Button> {' '}
                                         <Button variant='danger' size='sm' onClick={() => {this.removeCard(appl.ApplicationID);}}>X</Button>{' '} 
+                                        <div className="float-right">Choice: {appl.Priority} </div>
                                     </div>
                                     <Card.Title>{appl.CompanyName}</Card.Title>
                                     <div>{appl.Position}</div>
@@ -202,7 +206,6 @@ class App extends React.Component {
                         </Container>
                         <div className="options">
                             <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
-                            {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Filter Tags</h2>
                             <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
                         </div>
