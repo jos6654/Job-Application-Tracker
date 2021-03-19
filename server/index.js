@@ -32,11 +32,14 @@ function SendEmailReminder(application) {
             pass: JobTrackerPass
         }
     });
+    emailContent = `<h1>Upcoming Interview!</h1><br><p>${application["CompanyName"]} Interview: ${application["InterviewDate"]}</p>`;
+    emailContent += `<p>Position: ${application["Position"]}</p><p>Salary: ${application["Salary"]}</p>`;
+    emailContent += `<p>Description: ${application["Description"]}</p>`;
     var mailOptions = {
         from: JobTrackerEmail,
         to: UserEmail,
         subject: "Interview Reminder: " + application["CompanyName"],
-        html: `<h1>Upcoming Interview!</h1><br><p>${application["CompanyName"]} Interview: ${application["InterviewDate"]}</p>`
+        html: emailContent
     }
     transporter.sendMail(mailOptions, function(err, info){
         if (err) {
