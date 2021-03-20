@@ -8,7 +8,7 @@ class Visualization extends React.Component {
         super();
         this.state = {
             close: props.close,
-            dadta: props.data
+            data: props.data
         };
         this.close = this.close.bind(this);
     }
