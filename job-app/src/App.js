@@ -250,7 +250,7 @@ class App extends React.Component {
                             <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
                             <br />
                             <br />
-                            <Button variant="info" className="btn-primary" onClick={() => { this.setState({exportVisualization: true}); }}>Export for Visualization</Button> {' '}
+                            <Button variant="info" className="btn-primary" onClick={() => { this.setState({exportVisualization: true}); }}>Format for Visualization</Button> {' '}
                             {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Filter Tags</h2>
                             <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
