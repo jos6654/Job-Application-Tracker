@@ -29,5 +29,110 @@
         "AppliedDate": "2021-02-19T05:00:00.000Z",
         "InterviewDate": "",
         "Description": "Coding for the official internet company."
+    },
+    {
+        "ApplicationID": "1ba7081d-ff64-471d-8e85-63b4cb004b98",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test1",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Applied",
+        "AppliedDate": "2021-03-20T20:19:23.756Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "aa0ed888-aa8b-45ba-a250-0d5e9a855c80",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test2",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Applied",
+        "AppliedDate": "2021-03-20T20:19:35.015Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "620e2281-9285-43c8-ad77-07dc076d3a52",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test3",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Applied",
+        "AppliedDate": "2021-03-20T20:19:42.259Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "203269fe-24ed-4781-ad39-aaa0ab5d1d11",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test4",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Denied",
+        "AppliedDate": "2021-03-20T20:20:07.745Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "ba7177f1-f2f0-42fc-bbfa-993342ccf2ff",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test5",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Denied",
+        "AppliedDate": "2021-03-20T20:20:21.037Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "2f8c0f40-4445-4038-80a3-05bd2310e9fc",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test6",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Denied",
+        "AppliedDate": "2021-03-20T20:20:28.141Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "3baded18-5b3c-428b-8779-aced0b75c68d",
+        "Position": "",
+        "Salary": "",
+        "CompanyName": "Test7",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Accepted",
+        "AppliedDate": "2021-03-20T20:22:32.736Z",
+        "InterviewDate": "",
+        "Description": ""
     }
 ]

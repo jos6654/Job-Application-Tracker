@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Popup from './components/popup/Popup.js';
 import Sidebar from './components/sidebar/Sidebar.js';
+import Visualization from './components/visualization/Visualization.js';
 import { options } from './constants.js';
 
 class App extends React.Component {
@@ -20,7 +21,8 @@ class App extends React.Component {
             popupOpenUpdate: false,
             cardToUpdate: null,
             allTags: [],
-            filteredTags: []
+            filteredTags: [],
+            exportVisualization: false
         };
         this.addCard = this.addCard.bind(this);
         this.cancel = this.cancel.bind(this);
@@ -30,6 +32,7 @@ class App extends React.Component {
         this.findTags = this.findTags.bind(this);
         this.setFilteredTags = this.setFilteredTags.bind(this);
         this.removeTag = this.removeTag.bind(this);
+        this.formatVisualization = this.formatVisualization.bind(this);
     }
 
     findTags() {
@@ -82,9 +85,51 @@ class App extends React.Component {
         return cards;
     }
 
+    formatVisualization() {
+        var layers = [0, 0, 0, 0, 0];
+        var formattedData = "";
+        console.log("I'm was called")
+        this.state.applications.forEach((card) => {
+            switch(card.Status) {
+                case "Applied":
+                    layers[0] += 1;
+                    break;
+                case "Interviewing":
+                    layers[0] += 1;
+                    layers[1] += 1;
+                    break;
+                case "Denied":
+                    layers[0] += 1;
+                    layers[1] += 1;
+                    layers[2] += 1;
+                    break;
+                case "Offered":
+                    layers[0] += 1;
+                    layers[1] += 1;
+                    layers[3] += 1;
+                    break;
+                case "Accepted":
+                    layers[0] += 1;
+                    layers[1] += 1;
+                    layers[3] += 1;
+                    layers[4] += 1;
+                    break;
+                default:
+                    console.log("Error: status not recognized")
+                    break;
+            }
+        });
+        formattedData = "Applied [" + (layers[0] - layers[1]) + "] Rejected/No Response\n" + 
+                        "Applied [" + layers[1] + "] Interview\n" +
+                        "Interview [" + layers[2] + "] Denied\n" +
+                        "Interview [" + layers[3] + "] Offered\n" +
+                        "Offered [" + (layers[3] - layers[4]) + "] Turned Down\n" +
+                        "Offered [" + (layers[4]) + "] Accepted";
+        return formattedData;
+    }
+
     categories() {
         const categories = [];
-        console.log(options);
         options.forEach((option) => {
             categories.push(
                 <div className="full-category" key={option}>
@@ -121,7 +166,8 @@ class App extends React.Component {
         this.setState({
             popupOpenAdd: false,
             popupOpenUpdate: false,
-            cardToUpdate: null
+            cardToUpdate: null,
+            exportVisualization: false
         });
     }
 
@@ -202,6 +248,9 @@ class App extends React.Component {
                         </Container>
                         <div className="options">
                             <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
+                            <br />
+                            <br />
+                            <Button variant="info" className="btn-primary" onClick={() => { this.setState({exportVisualization: true}); }}>Export for Visualization</Button> {' '}
                             {/*<Button variant="primary" className="btn-primary" onClick={() => {this.save()}}>Save</Button> {' '}*/}
                             <h2>Filter Tags</h2>
                             <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
@@ -211,6 +260,7 @@ class App extends React.Component {
                 {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={""}></Popup>}
                 {this.state.popupOpenUpdate && <Popup updateCard={this.updateCard} cancel={this.cancel} cardToUpdate={this.state.cardToUpdate} 
                     appliedDate={this.state.cardToUpdate.AppliedDate} interviewDate={this.state.cardToUpdate.InterviewDate}></Popup>}
+                {this.state.exportVisualization && <Visualization close={this.cancel} data={this.formatVisualization()}></Visualization>}
             </React.Fragment>
         );
     }
