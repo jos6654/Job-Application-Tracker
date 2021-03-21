@@ -19,21 +19,11 @@
     margin: auto;
 }
 
-.flex-horizontal {
-    display: flex;
-    flex-direction: row;
+.priority {
+    width: 30%
 }
 
-.flex-vertical {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.filler-horizontal {
-    flex: 1 0 auto;
-}
-
-.filler-vertical {
-    flex: 1 0 auto;
+label {
+    padding-right: 10px;
+    padding-top: 5px;
 }

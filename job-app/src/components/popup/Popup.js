@@ -61,6 +61,7 @@ class Popup extends React.Component {
             CompanyAddress: gcn("company-address"),
             Categories: assignedCategories,
             Status: gcn("app-status"),
+            Priority: gcn("priority"),
             AppliedDate: new Date(this.state.appliedDate).toISOString(),
             InterviewDate: interviewDate,
             Description: gcn("description")
@@ -139,6 +140,7 @@ class Popup extends React.Component {
             CompanyAddress: gcn("company-address"),
             Categories: assignedCategories,
             Status: gcn("app-status"),
+            Priority: gcn("priority"),
             AppliedDate: new Date(this.state.appliedDate).toISOString(),
             InterviewDate: interviewDate,
             Description: gcn("description")
@@ -180,13 +182,20 @@ class Popup extends React.Component {
                                 <Form.Label>Application Date:</Form.Label>
                                 <DatePicker selected={Date.parse(this.state.appliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
                             </Form.Group>
+
                             <Form.Group>
                                 <Form.Label>Interview Date:</Form.Label>
                                 <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                             </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label>Priority:</Form.Label>
+                                <input className="priority" type="number" defaultValue={this.state.cardToUpdate.Priority} placeholder="1 = First choice" min="1" max="10"/>
+                            </Form.Group>
                             
                         </Form>     
                         {this.statusSelector(this.state.cardToUpdate)}
+                        <br/>
                         <button onClick={this.updateMyCard}>Update my Application</button>
                         <button onClick={this.cancel}>Cancel</button>
                     </Modal.Body>
@@ -203,7 +212,7 @@ class Popup extends React.Component {
                             <Form.Label>Company Name:</Form.Label>
                             <Form.Control className="company-name" placeholder="Company Name" />
 
-                            <Form.Label>Position</Form.Label>
+                            <Form.Label>Position:</Form.Label>
                             <Form.Control className="position" placeholder="Position" />
 
                             <Form.Label>Salary:</Form.Label>
@@ -225,13 +234,20 @@ class Popup extends React.Component {
                                 <Form.Label>Application Date:</Form.Label>
                                 <DatePicker selected={Date.parse(this.state.appliedDate)} onChange={(date) => {this.setState({ appliedDate: date });}}></DatePicker>
                             </Form.Group>
+
                             <Form.Group>
                                 <Form.Label>Interview Date:</Form.Label>
                                 <DatePicker selected={Date.parse(this.state.interviewDate)} showTimeSelect timeFormat="HH:mm" timeIntervals={15} dateFormat="Pp" onChange={(date) => {this.setState({ interviewDate: date });}}></DatePicker>
                             </Form.Group>
                             
+                            <Form.Group>
+                                <Form.Label>Priority (1-10): </Form.Label>
+                                <input className="priority" type="number" placeholder="1 = First choice" min="1" max="10"/>
+                            </Form.Group>
+
                         </Form>     
                         {this.statusSelector()}
+                        <br/>
                         <button onClick={this.addMyCard}>Add my Application</button>
                         <button onClick={this.cancel}>Cancel</button>
                         

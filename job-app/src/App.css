@@ -35,12 +35,12 @@
   max-width: 10vw;
 }
 .options {
-  position: absolute;
+  position: relative;
   right: 0px;
   padding: 10px;
   background-color: lightgrey;
   min-height: 100vh;
-  min-width: 10vw;
+  min-width: 15vw;
 }
 
 .App-link {
@@ -59,4 +59,12 @@
 
 .single-tag {
   width: 100%;
+}
+
+.card-container {
+  padding-bottom: 10px;
+}
+
+.float-right {
+  float: right;
 }
