@@ -13,6 +13,10 @@
   display: flex;
 }
 
+.btn-primary {
+  white-space: nowrap;
+}
+
 .main {
   align-items: left;
   min-height: 100vh;
@@ -35,12 +39,12 @@
   max-width: 10vw;
 }
 .options {
-  position: relative;
+  overflow: hidden;
   right: 0px;
   padding: 10px;
   background-color: lightgrey;
   min-height: 100vh;
-  min-width: 15vw;
+  width: auto;
 }
 
 .App-link {
@@ -54,7 +58,7 @@
 
 .full-category {
   height: 100%;
-  flex: 1 0 auto;
+  flex: 1 0 19%;
 }
 
 .single-tag {

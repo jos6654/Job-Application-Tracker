@@ -250,14 +250,14 @@ class App extends React.Component {
                         <Container className="main">
                             {this.categories()}
                         </Container>
-                        <div className="options">
-                            <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
-                            <br />
-                            <br />
-                            <Button variant="info" className="btn-primary" onClick={() => { this.setState({exportVisualization: true}); }}>Format for Visualization</Button> {' '}
-                            <h2>Filter Tags</h2>
-                            <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
-                        </div>
+                        <div className="options float-right">
+                                <Button variant="primary" className="btn-primary" onClick={() => { this.setState({popupOpenAdd: true}); }}>+ New Application</Button> {' '}
+                                <br />
+                                <br />
+                                <Button variant="info" className="btn-primary" onClick={() => { this.setState({exportVisualization: true}); }}>Visualize!</Button> {' '}
+                                <h2>Filter Tags</h2>
+                                <Sidebar checklist={this.state.allTags} callback={this.setFilteredTags}></Sidebar>
+                            </div>
                     </div>
                 </div>
                 {this.state.popupOpenAdd && <Popup addCard={this.addCard} cancel={this.cancel} appliedDate={new Date()} interviewDate={""}></Popup>}
