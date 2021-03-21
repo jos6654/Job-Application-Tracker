@@ -1,9 +1,73 @@
 [
     {
+        "ApplicationID": "203269fe-24ed-4781-ad39-aaa0ab5d1d11",
+        "Position": "Senior Developer",
+        "Salary": "",
+        "CompanyName": "Company 4",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Denied",
+        "Priority": "1",
+        "AppliedDate": "2021-03-20T20:20:07.745Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "1ba7081d-ff64-471d-8e85-63b4cb004b98",
+        "Position": "Developer",
+        "Salary": "",
+        "CompanyName": "Company 1",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#Goals"
+        ],
+        "Status": "Applied",
+        "Priority": "1",
+        "AppliedDate": "2021-03-20T20:19:23.756Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "3baded18-5b3c-428b-8779-aced0b75c68d",
+        "Position": "Developer",
+        "Salary": "",
+        "CompanyName": "Company 7",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Accepted",
+        "Priority": "2",
+        "AppliedDate": "2021-03-20T20:22:32.736Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
+        "ApplicationID": "620e2281-9285-43c8-ad77-07dc076d3a52",
+        "Position": "Developer",
+        "Salary": "",
+        "CompanyName": "Company 3",
+        "CompanyPhone": "",
+        "CompanyAddress": "",
+        "Categories": [
+            "#untagged"
+        ],
+        "Status": "Applied",
+        "Priority": "3",
+        "AppliedDate": "2021-03-20T20:19:42.259Z",
+        "InterviewDate": "",
+        "Description": ""
+    },
+    {
         "ApplicationID": "GUID2-123-409812349-0",
-        "Position": "Junior Software",
+        "Position": "Junior Developer",
         "Salary": "$45/hour",
-        "CompanyName": "Internet",
+        "CompanyName": "Company 8",
         "CompanyPhone": "(321) 654-0987",
         "CompanyAddress": "California, CA 12345",
         "Categories": [
@@ -17,107 +81,50 @@
         "Description": "Coding for the official internet company."
     },
     {
-        "ApplicationID": "1ba7081d-ff64-471d-8e85-63b4cb004b98",
-        "Position": "",
-        "Salary": "",
-        "CompanyName": "Test1",
-        "CompanyPhone": "",
-        "CompanyAddress": "",
-        "Categories": [
-            "#untagged"
-        ],
-        "Status": "Applied",
-        "AppliedDate": "2021-03-20T20:19:23.756Z",
-        "InterviewDate": "",
-        "Description": ""
-    },
-    {
-        "ApplicationID": "aa0ed888-aa8b-45ba-a250-0d5e9a855c80",
-        "Position": "",
-        "Salary": "",
-        "CompanyName": "Test2",
-        "CompanyPhone": "",
-        "CompanyAddress": "",
-        "Categories": [
-            "#untagged"
-        ],
-        "Status": "Applied",
-        "AppliedDate": "2021-03-20T20:19:35.015Z",
-        "InterviewDate": "",
-        "Description": ""
-    },
-    {
-        "ApplicationID": "620e2281-9285-43c8-ad77-07dc076d3a52",
-        "Position": "",
-        "Salary": "",
-        "CompanyName": "Test3",
-        "CompanyPhone": "",
-        "CompanyAddress": "",
-        "Categories": [
-            "#untagged"
-        ],
-        "Status": "Applied",
-        "AppliedDate": "2021-03-20T20:19:42.259Z",
-        "InterviewDate": "",
-        "Description": ""
-    },
-    {
-        "ApplicationID": "203269fe-24ed-4781-ad39-aaa0ab5d1d11",
-        "Position": "",
-        "Salary": "",
-        "CompanyName": "Test4",
-        "CompanyPhone": "",
-        "CompanyAddress": "",
-        "Categories": [
-            "#untagged"
-        ],
-        "Status": "Denied",
-        "AppliedDate": "2021-03-20T20:20:07.745Z",
-        "InterviewDate": "",
-        "Description": ""
-    },
-    {
         "ApplicationID": "ba7177f1-f2f0-42fc-bbfa-993342ccf2ff",
-        "Position": "",
+        "Position": "Developer",
         "Salary": "",
-        "CompanyName": "Test5",
+        "CompanyName": "Company 5",
         "CompanyPhone": "",
         "CompanyAddress": "",
         "Categories": [
             "#untagged"
         ],
         "Status": "Denied",
+        "Priority": "3",
         "AppliedDate": "2021-03-20T20:20:21.037Z",
         "InterviewDate": "",
         "Description": ""
     },
     {
         "ApplicationID": "2f8c0f40-4445-4038-80a3-05bd2310e9fc",
-        "Position": "",
+        "Position": "Senior Developer",
         "Salary": "",
-        "CompanyName": "Test6",
+        "CompanyName": "Company 6",
         "CompanyPhone": "",
         "CompanyAddress": "",
         "Categories": [
             "#untagged"
         ],
         "Status": "Denied",
+        "Priority": "5",
         "AppliedDate": "2021-03-20T20:20:28.141Z",
         "InterviewDate": "",
         "Description": ""
     },
     {
-        "ApplicationID": "3baded18-5b3c-428b-8779-aced0b75c68d",
-        "Position": "",
+        "ApplicationID": "aa0ed888-aa8b-45ba-a250-0d5e9a855c80",
+        "Position": "Junior Developer",
         "Salary": "",
-        "CompanyName": "Test7",
+        "CompanyName": "Company 2",
         "CompanyPhone": "",
         "CompanyAddress": "",
         "Categories": [
             "#untagged"
         ],
-        "Status": "Accepted",
-        "AppliedDate": "2021-03-20T20:22:32.736Z",
+        "Status": "Applied",
+        "Priority": "6",
+        "AppliedDate": "2021-03-20T20:19:35.015Z",
         "InterviewDate": "",
         "Description": ""
     },
@@ -125,7 +132,7 @@
         "ApplicationID": "GUID1-012350987",
         "Position": "Lead Software Breaker",
         "Salary": "$99/year",
-        "CompanyName": "Tik Tok",
+        "CompanyName": "Company 9",
         "CompanyPhone": "(123) 456-7890",
         "CompanyAddress": "Rochester, NY 66666",
         "Categories": [
